@@ -1,7 +1,11 @@
+import './card.css'
 
-
-export const card = () => {
+export const Card = (props) => {
   return (
-    <div>card</div>
+    <div className='card'>
+      {props.children}
+    </div>
   )
 }
+
+export default Card

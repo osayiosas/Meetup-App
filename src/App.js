@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {AllMeetUps} from './pages/AllMeetUps';
 import{ NewMeetUps} from './pages/NewMeetUps';
 import {Favorites} from './pages/Favorites';
-import { Navbar } from './components/layout/Navbar';
+import Layout from './components/layout/Layout';
 
 
 
@@ -12,7 +12,7 @@ function App()
   return <div>
     <Router>
 
-      <Navbar />
+      <Layout >
 
       <Routes>
         
@@ -20,7 +20,9 @@ function App()
         <Route path='new-meetups' element={<NewMeetUps />} />
         <Route path='favourites' element={<Favorites />} />
 
-      </Routes>
+        </Routes>
+        
+       </Layout>
     </Router>
   </div>;
 }
