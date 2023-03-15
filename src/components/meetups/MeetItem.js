@@ -1,7 +1,28 @@
-import Card from '../ui/card';
+import { useContext } from "react";
+
+import Card from "../ui/card";
 import "./meetItems.css";
+import FavContext from "../../store/fav-context";
 
 export const MeetItem = (props) => {
+  const favCtx = useContext(FavContext);
+
+  const itemIsFav = favCtx.itemIsFav(props.id);
+
+  const toggleFavStatusHandler = () => {
+    if (itemIsFav) {
+      favCtx.removeFav(props.id);
+    } else {
+      favCtx.addFav({
+        id: props.id,
+        title: props.title,
+        image: props.image,
+        address: props.address,
+        description: props.descripition,
+      });
+    }
+  };
+
   return (
     <li className="item">
       <Card>
@@ -16,7 +37,9 @@ export const MeetItem = (props) => {
         </div>
 
         <div className="actions">
-          <button>To Favorites</button>
+          <button onClick={toggleFavStatusHandler}>
+            {itemIsFav ? "Remove From Favorites" : "Add To Favorite"}
+          </button>
         </div>
       </Card>
     </li>
